@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="#060F24">
 
@@ -10,6 +10,8 @@
         android:id="@+id/ivPoster"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:layout_marginStart="0dp"
         android:layout_marginTop="0dp"
         tools:srcCompat="@tools:sample/avatars[0]" />
@@ -22,7 +24,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="4dp"
         android:layout_toEndOf="@+id/ivPoster"
-        android:textColor="#FFFFFF"
+        android:textColor="#ffffff"
         android:textSize="24sp"
         tools:text="Joker" />
 
@@ -31,9 +33,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvTitle"
+        android:layout_alignBottom="@id/ivPoster"
         android:layout_marginStart="5dp"
         android:layout_marginTop="20dp"
         android:layout_toEndOf="@+id/ivPoster"
-        android:textColor="#FFFFFF"
+        android:scrollbars="vertical"
+        android:textColor="#ffffff"
         tools:text="During the 1980s, a failed stand-up comedian is driven insane and turns to a life of crime and chaos in Gotham City while becoming an infamous psychopathic crime figure." />
 </RelativeLayout>

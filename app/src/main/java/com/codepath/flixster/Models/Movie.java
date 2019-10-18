@@ -17,7 +17,6 @@ public class Movie {
     String title;
     String overview;
     int rating;
-   // Movie posterSize[];
 
 
     public static final String TAG = "Movie";
@@ -29,14 +28,7 @@ public class Movie {
         overview = jsonObject.getString("overview");
         rating = jsonObject.getInt("vote_average");
 
-//        JSONObject jsonObject2 = jsonObject;          Request images location like in main activity
-//        JSONObject images = jsonObject2.getJSONObject("images");
-//              Log.i(TAG, "Images size:" + images.length());
 
-        //        for (int i = 0; i < images.length(); i++) {
-//            posterSize[i] = images.;
-//            Log.i(TAG, i + "size: " + posterSize[i]);
-//        }
     }
 
     public static List<Movie> fromJsonArray(JSONArray movieJsonArray) throws JSONException {
@@ -49,16 +41,12 @@ public class Movie {
 
 
     public String getPosterPath() {
-        if(rating >= 5){
-            return String.format("https://image.tmdb.org/t/p/w342/%s", backdropPath);
-        }
-        else {
-            return String.format("https://image.tmdb.org/t/p/w342/%s", posterPath);
-        }
+        return String.format("https://image.tmdb.org/t/p/w1280/%s", posterPath);
+
     }
 
     public String getBackdropPath(){
-        return String.format("https://image.tmdb.org/t/p/w342/%s", backdropPath);
+        return String.format("https://image.tmdb.org/t/p/w780/%s", backdropPath);
     }
 
     public String getTitle() {
