@@ -6,6 +6,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.ScrollView;
 
 import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
@@ -31,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         RecyclerView rvMovies = findViewById(R.id.rvMovies);
+        ScrollView childScroll = findViewById((R.id.childScroll));
         movies = new ArrayList<>();
 
         //Create adapter
@@ -64,5 +68,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "Failed");
             }
         });
+
+
     }
 }

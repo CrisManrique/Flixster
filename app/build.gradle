@@ -29,4 +29,5 @@ dependencies {
     implementation 'com.codepath.libraries:asynchttpclient:0.0.9'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     compile 'com.github.bumptech.glide:glide:4.9.0'
+
 }
