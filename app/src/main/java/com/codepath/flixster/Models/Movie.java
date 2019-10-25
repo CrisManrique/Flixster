@@ -7,27 +7,38 @@ import android.util.Log;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcel;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Parcel
 public class Movie {
+
+
+    int movieId;
     String backdropPath;
     String posterPath;
     String title;
     String overview;
-    int rating;
+    double rating;
 
+    //empty constructor needed by the Parceler Library
+    public Movie() {
+
+    }
 
     public static final String TAG = "Movie";
+
+
 
     public Movie(JSONObject jsonObject) throws JSONException {
         posterPath = jsonObject.getString("poster_path");
         backdropPath = jsonObject.getString("backdrop_path");
         title = jsonObject.getString("title");
         overview = jsonObject.getString("overview");
-        rating = jsonObject.getInt("vote_average");
-
+        rating = jsonObject.getDouble("vote_average");
+        movieId = jsonObject.getInt("id");
 
     }
 
@@ -56,4 +67,13 @@ public class Movie {
     public String getOverview() {
         return overview;
     }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public int getMovieId() {
+        return movieId;
+    }
+
 }

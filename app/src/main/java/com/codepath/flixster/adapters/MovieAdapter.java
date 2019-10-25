@@ -1,8 +1,10 @@
 package com.codepath.flixster.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
+import android.os.Parcel;
 import android.text.Layout;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
@@ -11,15 +13,20 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.codepath.flixster.DetailActivity;
 import com.codepath.flixster.Models.Movie;
 import com.codepath.flixster.R;
+
+import org.parceler.Parcels;
 
 import java.util.List;
 
@@ -66,6 +73,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
         TextView tvOverview;
         ImageView ivPoster;
         ScrollView scrollable;
+        RelativeLayout container;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvTitle = itemView.findViewById(R.id.tvTitle);
@@ -73,7 +81,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
             //tvOverview.setMovementMethod(new ScrollingMovementMethod());
             ivPoster = itemView.findViewById(R.id.ivPoster);
             scrollable = itemView.findViewById(R.id.childScroll);
-
+            container = itemView.findViewById(R.id.container);
             tvOverview.setOnTouchListener(new View.OnTouchListener() {
                 public boolean onTouch(View v, MotionEvent event){
                     v.getParent().requestDisallowInterceptTouchEvent(true);
@@ -83,7 +91,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
             tvOverview.setMovementMethod(new ScrollingMovementMethod());
         }
 
-        public void bind(Movie movie) {
+        public void bind(final Movie movie) {
             tvTitle.setText(movie.getTitle());
             tvOverview.setText(movie.getOverview());
             String imageURL;
@@ -94,6 +102,18 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
                imageURL = movie.getPosterPath();
            }
             Glide.with(context).load(imageURL).into(ivPoster);
+
+            // 1. Register click listener on the whole row
+
+           container.setOnClickListener(new View.OnClickListener() {
+               @Override
+               //2. Navigate to a new activity on tap
+               public void onClick(View v) {
+                   Intent i = new Intent(context, DetailActivity.class);
+                   i.putExtra("movie", Parcels.wrap(movie));
+                   context.startActivity(i);
+               }
+           });
         }
     }
 
